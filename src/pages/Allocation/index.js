@@ -74,8 +74,8 @@ const Allocations = () => {
       professorId: allocation.professorId,
       courseId: allocation.courseId,
       dayOfWeek: allocation.dayOfWeek,
-      startHour: allocation.startHour + '+' + '0000',
-      endHour: allocation.endHour + '+' + '0000',
+      startHour: allocation.startHour.replace(/^(\d{2})(\d{2})/, "$1:$2") + '+' + '0000',
+      endHour: allocation.endHour.replace(/^(\d{2})(\d{2})/, "$1:$2") + '+' + '0000',
     };
     try {
       if (allocation.id) {
@@ -199,7 +199,7 @@ const Allocations = () => {
                 <Form.Control
                   name="startHour"
                   onChange={onChange}
-                  value={(allocation.startHour ? allocation.startHour.replace('+0000', '') : allocation.startHour)}
+                  value={(allocation.startHour ? allocation.startHour.replace(/^(\d{2})(\d{2})/, "$1:$2").replace('+0000', '') : allocation.startHour)}           
                   placeholder="Ex.: 20:00"
                 />
               </Form.Group>
@@ -210,7 +210,7 @@ const Allocations = () => {
                   mask="99:99"
                   name="endHour"
                   onChange={onChange}
-                  value={(allocation.endHour ? allocation.endHour.replace('+0000', '') : allocation.endHour) }
+                  value={(allocation.endHour ? allocation.endHour.replace(/^(\d{2})(\d{2})/, "$1:$2").replace('+0000', '') : allocation.endHour) }
                   placeholder="Ex.: 21:00"
                 />
               </Form.Group>
