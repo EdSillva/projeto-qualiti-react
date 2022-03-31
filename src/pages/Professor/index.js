@@ -168,7 +168,7 @@ const Professors = () => {
                 <Form.Control
                   name="cpf"
                   onChange={onChange}
-                  value={professor.cpf}
+                  value={professor.cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")}
                 />
               </Form.Group>
               <Form.Group className="mt-4">
